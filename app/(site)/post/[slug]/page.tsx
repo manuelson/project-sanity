@@ -3,11 +3,7 @@ import { getPost } from "@/app/lib/sanity/client";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-type Props = {
-  params: { slug: string };
-};
-
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const project = await getPost(params.slug);
 
   return (
