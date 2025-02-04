@@ -3,7 +3,7 @@ import { structureTool } from "sanity/structure";
 import { schemas } from "./app/lib/sanity/schemas";
 
 const config = defineConfig({
-  projectId: "n6m20cm5",
+  projectId: process.env.SANITY_PROJECT_ID || "my-project-id",
   dataset: "production",
   title: "My Personal Website",
   apiVersion: "2023-03-09",

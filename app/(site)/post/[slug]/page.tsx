@@ -3,8 +3,12 @@ import { getPost } from "@/app/lib/sanity/client";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const project = await getPost(params.slug);
+type Params = Promise<{ slug: string }>;
+
+export default async function Post(props: { params: Params }) {
+  const { slug } = await props.params;
+
+  const project = await getPost(slug);
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
