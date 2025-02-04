@@ -16,18 +16,18 @@ export default async function Post(props: { params: Params }) {
         <Link href="/">My blog with Sanity.io</Link>
       </div>
 
-      <div className="mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:text-left">
+      <div className="mb-32 lg:max-w-5xl lg:w-full lg:mb-0 lg:text-left">
         <div className="z-10 max-w-5xl w-full font-bold items-center bold justify-between font-mono text-sm lg:flex mb-10">
           <Link href="/">Go back</Link>
         </div>
-        <div className="flex gap-5 justify-items-center group rounded-lg border border-transparent px-5 py-4">
+        <div className="mb-32 grid gap-6 lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
           {project.image && (
             <Image
               src={project.image}
               alt={project.title}
               width={750}
               height={300}
-              className="object-cover rounded-lg w-96 object-contain"
+              className="object-cover rounded-lg w-98 object-contain"
             />
           )}
           <div>
