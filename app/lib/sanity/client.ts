@@ -24,6 +24,7 @@ export async function getPost(slug: string): Promise<Posts> {
       title,
       "slug": slug.current,
       "image": image.asset->url,
+      publishedAt,
       body
     }`,
     { slug }

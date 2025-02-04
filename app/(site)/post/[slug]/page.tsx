@@ -7,8 +7,10 @@ type Params = Promise<{ slug: string }>;
 
 export default async function Post(props: { params: Params }) {
   const { slug } = await props.params;
-
   const project = await getPost(slug);
+
+  // transform publishedAt to a readable format
+  const date = new Date(project.publishedAt);
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
@@ -18,18 +20,24 @@ export default async function Post(props: { params: Params }) {
 
       <div className="mb-32 lg:max-w-5xl lg:w-full lg:mb-0 lg:text-left">
         <div className="z-10 max-w-5xl w-full font-bold items-center bold justify-between font-mono text-sm lg:flex mb-10">
-          <Link href="/">Go back</Link>
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <Link href="/">Go back</Link>
+          </button>
         </div>
         <div className="mb-32 grid gap-8 lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
-          {project.image && (
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={750}
-              height={300}
-              className="rounded-lg"
-            />
-          )}
+          <div>
+            {project.image && (
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={750}
+                height={300}
+                className="rounded-lg"
+              />
+            )}
+            <p className="mt-2 text-xs">Published at: {date.toDateString()}</p>
+          </div>
+
           <div>
             <h1 className={`mb-3 font-semibold pt-2 text-3xl`}>
               {project.title}
