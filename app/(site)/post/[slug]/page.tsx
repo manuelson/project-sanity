@@ -35,7 +35,14 @@ export default async function Post(props: { params: Params }) {
                 className="rounded-lg"
               />
             )}
-            <p className="mt-2 text-xs">Published at: {date.toDateString()}</p>
+            <div className="mt-2">
+              <span className="bg-blue-100 mt-2 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
+                Writed by <strong>{project.author}</strong>
+              </span>
+              <span className="mt-2 text-xs">
+                Published at: <strong>{date.toDateString()}</strong>
+              </span>
+            </div>
           </div>
 
           <div>
