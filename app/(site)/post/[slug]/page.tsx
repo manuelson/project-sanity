@@ -24,7 +24,7 @@ export default async function Post(props: { params: Params }) {
             <Link href="/">Go back</Link>
           </button>
         </div>
-        <div className="mb-32 grid gap-8 lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
+        <div className="mb-32 grid lg:gap-8 sm:gap-3 lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left ">
           <div>
             {project.image && (
               <Image
@@ -46,9 +46,7 @@ export default async function Post(props: { params: Params }) {
           </div>
 
           <div>
-            <h1 className={`mb-3 font-semibold pt-2 text-3xl`}>
-              {project.title}
-            </h1>
+            <h1 className={`mb-3 font-semibold text-3xl`}>{project.title}</h1>
             <PortableText value={project.body} />
           </div>
         </div>
