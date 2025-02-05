@@ -16,7 +16,7 @@ export default async function Home() {
       "image": image.asset->url,
       body
     }`,
-    tags: ["all"],
+    tags: ["post"],
   });
 
   console.log(posts);
