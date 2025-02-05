@@ -40,7 +40,7 @@ export default async function Home() {
                   alt={project.title}
                   width={750}
                   height={300}
-                  className="object-cover rounded-lg "
+                  className="block w-full lg:h-[14rem] overflow-hidden rounded-lg object-cover"
                 />
               )}
               <h2 className={`mb-3 font-semibold pt-2`}>{project.title}</h2>
