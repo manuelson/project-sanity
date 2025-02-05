@@ -1,4 +1,5 @@
-import NextAuth, { Session } from "next-auth";
+import NextAuth, { Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
@@ -21,10 +22,11 @@ const handler = NextAuth({
           headers: { "Content-Type": "application/json" },
         });*/
 
-        const user = {
+        const user: User = {
           id: "1",
-          name: "admin",
+          name: "manu",
           email: "masda@asdsad.es",
+          image: "https://ui-avatars.com/api/?name=Manu",
         };
         return user;
       },
@@ -44,7 +46,7 @@ const handler = NextAuth({
       console.log(session);
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token }: { token: JWT }) {
       // callback for check JWT is valid
       return token;
     },
