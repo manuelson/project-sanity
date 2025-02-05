@@ -35,7 +35,7 @@ export default function Header() {
         <ul className="grid grid-flow-col gap-4 ">
           <li>
             <Link
-              className="hover:underline hover:underline-offset-4"
+              className="hover:underline hover:underline-offset-4 text-xs md:text-base"
               href="/sign-in"
             >
               Sign in
@@ -43,7 +43,7 @@ export default function Header() {
           </li>
           <li>
             <Link
-              className="hover:underline hover:underline-offset-4"
+              className="hover:underline hover:underline-offset-4 text-xs md:text-base"
               href="/sign-up"
             >
               Login
