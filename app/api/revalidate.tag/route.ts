@@ -35,8 +35,11 @@ export async function POST(req: NextRequest) {
     revalidateTag(body._type);
 
     return NextResponse.json({ body });
-  } catch (err) {
-    console.error(err);
-    return new Response(err.message, { status: 500 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown Error";
+    return NextResponse.json(
+      { message: "Error revalidating", error: message },
+      { status: 500 }
+    );
   }
 }
