@@ -2,6 +2,20 @@ import NextAuth, { Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+type JwtUser = User & {
+  username?: string;
+};
+
+type JwtSession = Session & {
+  user?: {
+    username?: string;
+  };
+};
+
+type Jwt = JWT & {
+  username?: string;
+};
+
 const handler = NextAuth({
   session: {
     strategy: "jwt",
@@ -22,11 +36,12 @@ const handler = NextAuth({
           headers: { "Content-Type": "application/json" },
         });*/
 
-        const user: User = {
+        const user: JwtUser = {
           id: "1",
           name: "manu",
           email: "masda@asdsad.es",
           image: "https://ui-avatars.com/api/?name=Manu",
+          username: "locotron",
         };
         return user;
       },
@@ -42,11 +57,17 @@ const handler = NextAuth({
     async redirect({ baseUrl }: { baseUrl: string }) {
       return baseUrl;
     },
-    async session({ session }: { session: Session }) {
+    async session({ session, token }: { session: JwtSession; token: Jwt }) {
+      if (session.user) {
+        session.user.username = token.username;
+      }
       console.log(session);
       return session;
     },
-    async jwt({ token }: { token: JWT }) {
+    async jwt({ token, user }: { token: Jwt; user: JwtUser }) {
+      if (user) {
+        token.username = user.username;
+      }
       // callback for check JWT is valid
       return token;
     },
