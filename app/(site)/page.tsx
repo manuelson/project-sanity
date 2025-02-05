@@ -1,12 +1,25 @@
 import Link from "next/link";
-import { getProjects } from "../lib/sanity/client";
+import { sanityFetch } from "../lib/sanity/client";
 import { Posts } from "../lib/sanity/types";
 import Image from "next/image";
+import { groq } from "next-sanity";
 
 export default async function Home() {
-  const projects = await getProjects();
+  const posts = await sanityFetch({
+    query: groq`*[_type == "post"]{
+      _id,
+      _createdAt, 
+      title,
+      author,
+      "slug": slug.current,
+      resume,
+      "image": image.asset->url,
+      body
+    }`,
+    tags: ["post"],
+  });
 
-  console.log(projects);
+  console.log(posts);
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex mb-10">
@@ -14,7 +27,7 @@ export default async function Home() {
       </div>
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left relative">
-        {projects.map((project: Posts, idx) => (
+        {posts.map((project: Posts, idx: number) => (
           <>
             <Link
               key={idx}

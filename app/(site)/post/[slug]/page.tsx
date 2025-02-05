@@ -1,13 +1,26 @@
 import Link from "next/link";
-import { getPost } from "@/app/lib/sanity/client";
+import { sanityFetch } from "@/app/lib/sanity/client";
 import Image from "next/image";
-import { PortableText } from "next-sanity";
+import { groq, PortableText } from "next-sanity";
 
 type Params = Promise<{ slug: string }>;
 
 export default async function Post(props: { params: Params }) {
   const { slug } = await props.params;
-  const project = await getPost(slug);
+  const project = await sanityFetch({
+    query: groq`*[_type == "post" && slug.current == $slug][0]{
+      _id,
+      _createdAt,
+      title,
+      author,
+      "slug": slug.current,
+      "image": image.asset->url,
+      publishedAt,
+      body
+    }`,
+    params: { slug },
+    tags: ["post"],
+  });
 
   // transform publishedAt to a readable format
   const date = new Date(project.publishedAt);
