@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { sanityFetch } from "../lib/sanity/client";
-import { Posts } from "../lib/sanity/types";
+import { sanityFetch } from "@/lib/sanity/client";
+import { Posts } from "@/lib/sanity/types";
 import Image from "next/image";
 import { groq } from "next-sanity";
+import Header from "@/components/header";
 
 export default async function Home() {
   const posts = await sanityFetch({
@@ -19,18 +20,15 @@ export default async function Home() {
     tags: ["post"],
   });
 
-  console.log(posts);
   return (
     <main className="flex flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex mb-10">
-        <Link href="/">My blog with Sanity.io</Link>
-      </div>
+      <Header />
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left relative">
         {posts.map((project: Posts, idx: number) => (
           <>
             <Link
-              key={idx}
+              key={`post-${idx}`}
               href={`post/${project.slug}`}
               className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             >

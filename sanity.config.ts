@@ -1,6 +1,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { schemas } from "./app/lib/sanity/schemas";
+import { schemas } from "@/lib/sanity/schemas";
 
 const config = defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "my-project-id",

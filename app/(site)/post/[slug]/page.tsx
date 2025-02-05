@@ -2,6 +2,7 @@ import Link from "next/link";
 import { sanityFetch } from "@/app/lib/sanity/client";
 import Image from "next/image";
 import { groq, PortableText } from "next-sanity";
+import Header from "@/components/header";
 
 type Params = Promise<{ slug: string }>;
 
@@ -27,9 +28,7 @@ export default async function Post(props: { params: Params }) {
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex mb-10">
-        <Link href="/">My blog with Sanity.io</Link>
-      </div>
+      <Header />
 
       <div className="mb-32 lg:max-w-5xl lg:w-full lg:mb-0 lg:text-left">
         <div className="z-10 max-w-5xl w-full font-bold items-center bold justify-between font-mono text-sm lg:flex mb-10">
