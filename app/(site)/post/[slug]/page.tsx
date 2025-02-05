@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { sanityFetch } from "@/app/lib/sanity/client";
+import { sanityFetch } from "@/lib/sanity/client";
 import Image from "next/image";
 import { groq, PortableText } from "next-sanity";
 import Header from "@/components/header";
