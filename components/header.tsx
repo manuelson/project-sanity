@@ -9,8 +9,10 @@ export default function Header() {
   const user = data?.user as User;
 
   return (
-    <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex mb-10 ">
-      <Link href="/">My blog with Sanity.io </Link>
+    <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm flex mb-10">
+      <Link className="sm:text-xs" href="/">
+        My blog with Sanity.io{" "}
+      </Link>
 
       {data?.user?.name ? (
         <div className="flex items-center gap-4">
