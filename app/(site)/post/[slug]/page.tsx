@@ -19,7 +19,7 @@ export default async function Post(props: { params: Params }) {
       body
     }`,
     params: { slug },
-    tags: ["post"],
+    tags: ["all"],
   });
 
   // transform publishedAt to a readable format
